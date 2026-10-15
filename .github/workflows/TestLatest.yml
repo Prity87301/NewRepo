@@ -1,0 +1,27 @@
+## cicd file for learning purpose ##
+
+name: Python CI/CD Pipeline
+
+# Trigger the pipeline on pushes to the main branch
+on:
+  push:
+    branches: [ main ]
+
+jobs:
+  build4test:
+    # Run the workflow on a fresh hosted Ubuntu Linux runner
+    runs-on: ubuntu-latest
+
+    steps:
+    # 1. Check out the repository code onto the runner
+    - name: Checkout repository code
+      uses: actions/checkout@v4
+
+    # 2. Set up the specific Python runtime environment
+    - name: Set up Python
+      uses: actions/setup-python@v5
+      with:
+        python-version: '3.11'
+    ## 3. install python module from requirement.txt file prensent into Mas_Deep repo
+    - name: install python modules
+      run: pip install -r requirement.txt
